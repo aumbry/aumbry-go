@@ -2,16 +2,19 @@ package aumbry
 
 import (
 	"fmt"
-	"github.com/ghodss/yaml"
 	"io/ioutil"
 	"path"
 	"strings"
+
+	"github.com/ghodss/yaml"
 )
 
+// Aumbry Package Constants
 const (
 	YamlFile = "YamlFile"
 )
 
+// Aumbry is the core loader type.
 type Aumbry struct {
 	cfgType string
 	model   interface{}
@@ -19,6 +22,7 @@ type Aumbry struct {
 	options map[string]string
 }
 
+// New creates a Aumbry loader
 func New(cfgType string, model interface{}, options map[string]string) *Aumbry {
 	inst := new(Aumbry)
 	inst.cfgType = cfgType
@@ -28,6 +32,7 @@ func New(cfgType string, model interface{}, options map[string]string) *Aumbry {
 	return inst
 }
 
+// Load fetches the desired config and populates the model
 func (a *Aumbry) Load() interface{} {
 	switch a.cfgType {
 	case YamlFile:
